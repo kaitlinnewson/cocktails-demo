@@ -12,6 +12,8 @@ return new class () extends Migration {
     {
         Schema::create('recipes_equipment', function (Blueprint $table) {
             $table->id();
+            $table->integer('recipes_id');
+            $table->integer('equipment_id');
             $table->timestamps();
         });
     }

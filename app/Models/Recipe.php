@@ -22,7 +22,6 @@ class Recipe extends Model
         'short_description',
         'img',
         'img_credit',
-        'featured'
     ];
 
     public function ingredients(): BelongsToMany

@@ -2,28 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\View;
+use App\Models\Recipe;
 
 class RecipeController extends Controller
 {
     //
     public function recipe($id)
     {
-        $recipe = DB::table('recipes')
-        ->select('name', 'short_description', 'description', 'img')
-        ->where('id', $id)
-        ->first();
-
-        $ingredients = DB::table('recipes_ingredients')
-        ->select('name', 'unit', 'quantity', 'type')
-        ->join('ingredients', 'recipes_ingredients.ingredients_id', '=', 'ingredients.id')
-        ->where('recipes_ingredients.recipes_id', $id)
-        ->get();
+        $recipe = Recipe::find($id);
+        $ingredients = Recipe::find($id)->ingredients;
+        $equipment = Recipe::find($id)->equipment;
+        $glassware = $equipment->where('type', 'glassware')->first();
+        $garnish = $ingredients->where('type', 'garnish');
 
         return view('recipe', [
             'recipe' => $recipe,
-            'ingredients' => $ingredients
+            'ingredients' => $ingredients,
+            'garnish' => $garnish,
+            'glassware' => $glassware
         ]);
     }
 }

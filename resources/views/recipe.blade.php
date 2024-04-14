@@ -2,7 +2,13 @@
     <div class="container pt-3">
     <div class="row align-items-start">
         <div class="col">
-            <img src="{{ asset('/img/' . $recipe->img ) }}" class="img-fluid recipe-img" alt="{{ $recipe->name }}">
+            <figure class="figure">
+                <img src="{{ asset('/img/' . $recipe->img ) }}" class="img-fluid recipe-img figure-img" alt="{{ $recipe->name }}">
+                <figcaption class="figure-caption">
+                    {{ $recipe->img_credit }}
+                </figcaption>
+            </figure>
+
         </div>
         <div class="col">
             <h1 class="">{{ $recipe->name }}</h1>
@@ -11,21 +17,27 @@
 
             <ul>
             @foreach ($ingredients as $ingredient)
+
                 @if($ingredient->type === "garnish")
-                    @php 
-                        $garnish = $ingredient->type;
+                    @php
+                        // TODO: handle multiple garnishes 
+                        $garnish = $ingredient->name;
                     @endphp
                 @else
-                    <li>{{ $ingredient->quantity}} {{ $ingredient->unit}} {{ $ingredient->name }}</li>
+                    <li>{{ $ingredient->pivot->quantity}} {{ $ingredient->unit}} {{ $ingredient->name }}</li>
                 @endif
             @endforeach
             </ul>
 
             @isset($garnish)
-            <p><strong>Garnish:</strong> {{ $ingredient->name }}</p>
+            <p><strong>Garnish:</strong> {{ $garnish }}</p>
             @endisset
 
             <h2>Instructions</h2>
+
+            @isset($glassware->name)
+            <p><strong>Glass:</strong> {{ $glassware->name }}</p>
+            @endisset
 
             <p class="">{{ $recipe->description }}</p>
         </div>

@@ -29,9 +29,6 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/recipes">Recipes</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/resources">Resources</a>
                     </li>
                 </ul>

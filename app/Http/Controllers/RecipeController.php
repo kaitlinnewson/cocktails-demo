@@ -21,9 +21,6 @@ class RecipeController extends Controller
         ->where('recipes_ingredients.recipes_id', $id)
         ->get();
 
-        View::share('title', $recipe->name);
-        View::share('subtitle', $recipe->short_description);
-
         return view('recipe', [
             'recipe' => $recipe,
             'ingredients' => $ingredients

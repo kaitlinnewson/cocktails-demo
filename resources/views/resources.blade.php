@@ -1,6 +1,8 @@
 <x-layout>
+    <div class="px-4 py-2 my-5 text-center">
+        <h1 class="display-5 fw-bold">Resources</h1>
+    </div>
   <div class="container">
-
     <h2>Web</h2>
     <ul>
       <li>

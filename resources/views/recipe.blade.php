@@ -1,21 +1,36 @@
 <x-layout>
-    <img src="{{ asset('/img/' . $recipe->img ) }}" class="img-fluid recipe-img" alt="{{ $recipe->name }}">
-    <h2 class="">{{ $recipe->name }}</h5>
+    <div class="container pt-3">
+    <div class="row align-items-start">
+        <div class="col">
+            <img src="{{ asset('/img/' . $recipe->img ) }}" class="img-fluid recipe-img" alt="{{ $recipe->name }}">
+        </div>
+        <div class="col">
+            <h1 class="">{{ $recipe->name }}</h1>
+            <p>{{ $recipe->short_description }}</p>
+            <h2>Ingredients</h2>
 
-    <h3>Ingredients</h3>
-
-    @foreach ($ingredients as $ingredient)
-        @if($ingredient->type === "garnish")
-            <p>Garnish: {{ $ingredient->name }}</p>
-        @else
             <ul>
-                <li>{{ $ingredient->quantity}} {{ $ingredient->unit}} {{ $ingredient->name }}</li>
+            @foreach ($ingredients as $ingredient)
+                @if($ingredient->type === "garnish")
+                    @php 
+                        $garnish = $ingredient->type;
+                    @endphp
+                @else
+                    <li>{{ $ingredient->quantity}} {{ $ingredient->unit}} {{ $ingredient->name }}</li>
+                @endif
+            @endforeach
             </ul>
-        @endif
-    @endforeach
 
-    <h3>Instructions</h3>
+            @isset($garnish)
+            <p><strong>Garnish:</strong> {{ $ingredient->name }}</p>
+            @endisset
 
-    <p class="">{{ $recipe->description }}</p>
-    
+            <h2>Instructions</h2>
+
+            <p class="">{{ $recipe->description }}</p>
+        </div>
+    </div>
+    </div>
+
+
 </x-layout>

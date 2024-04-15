@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Recipe;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use Exception;
 
 class RecipeController extends Controller
@@ -16,7 +17,9 @@ class RecipeController extends Controller
         $ingredients = Recipe::find($id)->ingredients;
         $equipment = Recipe::find($id)->equipment;
         $glassware = $equipment->where('type', 'glassware')->first();
-        $garnish = $ingredients->where('type', 'garnish');
+        $garnish = $ingredients->where('type', 'garnish')->first();
+
+        View::share('title', $recipe->name);
 
         return view('recipe', [
             'recipe' => $recipe,

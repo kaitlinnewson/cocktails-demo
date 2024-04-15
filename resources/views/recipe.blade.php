@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="container pt-3">
+    <div class="container pt-5">
     <div class="row align-items-start">
         <div class="col">
             <figure class="figure">
@@ -8,7 +8,6 @@
                     {{ $recipe->img_credit }}
                 </figcaption>
             </figure>
-
         </div>
         <div class="col">
             <h1 class="">{{ $recipe->name }}</h1>

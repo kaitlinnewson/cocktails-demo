@@ -6,18 +6,24 @@
         </div>
     </div>
     
-    <h2 class="display-6 p-3">Featured Recipes</h2>
-        <div class="card-group p-3">
-        @foreach ($featured as $recipe)
-            <div class="card" style="width: 18rem;">
-                <a href="recipe/{{ $recipe->id }}">
-                    <img src="{{ asset('/img/' . $recipe->img ) }}" class="card-img" alt="{{ $recipe->name }}">
-                </a>
-                <div class="card-body">
-                    <h3 class="card-title">{{ $recipe->name }}</h3>
-                    <p class="card-text">{{ $recipe->short_description }}</p>
+    <div class="container">
+        <div class="row">
+            <h2 class="display-6 p-3">Featured Recipes</h2>
+            @foreach ($featured as $recipe)
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="recipe/{{ $recipe->id }}" tabindex="-1">
+                            <img src="{{ asset('/img/' . $recipe->img ) }}" class="card-img" alt="{{ $recipe->name }}">
+                        </a>
+                        <div class="card-body">
+                            <a class="card-title" href="recipe/{{ $recipe->id }}">
+                                <h3>{{ $recipe->name }}</h3>
+                            </a>
+                            <p class="card-text">{{ $recipe->short_description }}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
         </div>
+    </div>
 </x-layout>
